@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kashish | Product Manager & Business Analyst</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #050816;
+      --card: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.12);
+      --text: #f5f7ff;
+      --muted: #9aa4c7;
+      --accent: #6ee7ff;
+      --accent2: #8b5cf6;
+      --glow: 0 0 30px rgba(110, 231, 255, 0.25);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at top left, rgba(139,92,246,0.18), transparent 30%),
+                  radial-gradient(circle at bottom right, rgba(110,231,255,0.14), transparent 30%),
+                  var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: -1;
+      mask-image: radial-gradient(circle at center, black 30%, transparent 90%);
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin: auto;
+      padding: 50px 0;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 28px;
+    }
+
+    .glass {
+      background: var(--card);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(18px);
+      border-radius: 28px;
+      box-shadow: var(--glow);
+    }
+
+    .hero-left {
+      padding: 42px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(110,231,255,0.22), transparent 70%);
+      top: -120px;
+      right: -80px;
+    }
+
+    .tag {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid rgba(110,231,255,0.3);
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--accent);
+      margin-bottom: 20px;
+      background: rgba(110,231,255,0.06);
+    }
+
+    h1 {
+      font-size: 64px;
+      line-height: 1;
+      margin-bottom: 14px;
+      font-weight: 800;
+      letter-spacing: -2px;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, var(--accent), #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      color: var(--muted);
+      max-width: 700px;
+      margin-bottom: 26px;
+    }
+
+    .quick-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .chip {
+      padding: 10px 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 14px;
+      color: #dbe5ff;
+    }
+
+    .hero-right {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .metric {
+      padding: 22px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .metric h2 {
+      font-size: 38px;
+      margin-bottom: 4px;
+    }
+
+    .metric p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .section {
+      margin-top: 26px;
+      padding: 34px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 26px;
+    }
+
+    .section-title h3 {
+      font-size: 28px;
+      letter-spacing: -0.5px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+    }
+
+    .timeline-card {
+      padding: 24px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: 0.3s ease;
+    }
+
+    .timeline-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(110,231,255,0.35);
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .role {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .company {
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .date {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    ul {
+      padding-left: 20px;
+      color: #dce3ff;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .skill-box {
+      padding: 22px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .skill-box h4 {
+      margin-bottom: 12px;
+      font-size: 18px;
+      color: var(--accent);
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-tags span {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 8px 12px;
+      border-radius: 12px;
+      font-size: 13px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
+    }
+
+    .project-card {
+      padding: 24px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::after {
+      content: '';
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139,92,246,0.22), transparent 70%);
+      top: -80px;
+      right: -60px;
+    }
+
+    .project-card h4 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      font-size: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 40px 0 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .cursor {
+      position: fixed;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: rgba(110,231,255,0.6);
+      pointer-events: none;
+      mix-blend-mode: screen;
+      filter: blur(1px);
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+    }
+
+    @media(max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 46px;
+      }
+
+      .container {
+        width: 94%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="cursor" id="cursor"></div>
+
+  <div class="container">
+    <section class="hero">
+      <div class="hero-left glass">
+        <div class="tag">✦ Product Strategy • Business Analysis • Digital Transformation</div>
+
+        <h1>
+          Kashish <span class="gradient">— Building</span><br>
+          products that simplify complexity.
+        </h1>
+
+        <p class="subtitle">
+          Business Analyst transitioning deeper into Product Management with experience in enterprise digital transformation, workflow automation, stakeholder management, AI-driven solutions, and scalable business applications across oil & energy domains.
+        </p>
+
+        <div class="quick-info">
+          <div class="chip">📍 Pune, India</div>
+          <div class="chip">💼 Product & Business Analysis</div>
+          <div class="chip">⚡ Agile & Automation</div>
+          <div class="chip">🤖 AI + Workflow Optimization</div>
+        </div>
+      </div>
+
+      <div class="hero-right glass">
+        <div class="metric">
+          <h2>6+</h2>
+          <p>Enterprise Applications & Transformation Projects</p>
+        </div>
+
+        <div class="metric">
+          <h2>Cross-Functional</h2>
+          <p>Collaboration with Developers, UX, QA, Business Stakeholders & Leadership Teams</p>
+        </div>
+
+        <div class="metric">
+          <h2>AI + Automation</h2>
+          <p>Focused on process optimization, intelligent workflows, and scalable product thinking</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section glass">
+      <div class="section-title">
+        <h3>Experience</h3>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="role">Business Analyst</div>
+              <div class="company">SLB</div>
+            </div>
+            <div class="date">Current Role</div>
+          </div>
+
+          <ul>
+            <li>Led requirement gathering, stakeholder communication, and functional analysis across enterprise-scale digital applications.</li>
+            <li>Translated business requirements into technical requirements and collaborated closely with developers, testers, UI/UX teams, and BI teams.</li>
+            <li>Managed product reviews, UAT coordination, issue tracking, backlog refinement, and acceptance criteria documentation using Agile methodologies.</li>
+            <li>Worked on integration-heavy systems involving platforms such as Siebel, PBM, and MDM to streamline operational workflows.</li>
+            <li>Contributed to AI-driven and automation-focused initiatives to reduce manual effort and improve workflow efficiency.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="role">Digital Engagement & Innovation Contributor</div>
+              <div class="company">SLB Tech Day & Innovation Initiatives</div>
+            </div>
+            <div class="date">Project Leadership & Collaboration</div>
+          </div>
+
+          <ul>
+            <li>Organized digital engagement experiences and innovation showcases for enterprise technology events.</li>
+            <li>Collaborated across multiple teams to design interactive booth experiences, improve visibility for projects, and increase engagement through gamification.</li>
+            <li>Moderated Pitch Fest and Collective Intelligence sessions focused on business innovation and challenge-solving.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section glass">
+      <div class="section-title">
+        <h3>Key Projects</h3>
+      </div>
+
+      <div class="project-grid">
+        <div class="project-card">
+          <h4>SAHL</h4>
+          <p>
+            Automated financial cost recording and billing workflows for Saudi Aramco operations. Improved data integrity by reducing double entries between DILIP and FDP systems through workflow automation and streamlined mapping processes.
+          </p>
+        </div>
+
+        <div class="project-card">
+          <h4>ASK ASC</h4>
+          <p>
+            Worked on a support platform for the SLB Offshore community covering travel, medical assistance, housing, training, and catering workflows across UK/EUR regions.
+          </p>
+        </div>
+
+        <div class="project-card">
+          <h4>UAT Issue Tracking Initiative</h4>
+          <p>
+            Proposed and analyzed a centralized issue-tracking platform to replace fragmented Excel-based UAT management processes with role-based access and unified dashboards.
+          </p>
+        </div>
+
+        <div class="project-card">
+          <h4>AI & Product Thinking Concepts</h4>
+          <p>
+            Explored AI-powered validation systems, workflow automation opportunities, and product-focused solutions for enterprise-scale operational challenges.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section glass">
+      <div class="section-title">
+        <h3>Core Skills</h3>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-box">
+          <h4>Product & Strategy</h4>
+          <div class="skill-tags">
+            <span>Product Thinking</span>
+            <span>Roadmapping</span>
+            <span>Stakeholder Management</span>
+            <span>User-Centric Design</span>
+            <span>Business Analysis</span>
+          </div>
+        </div>
+
+        <div class="skill-box">
+          <h4>Agile & Delivery</h4>
+          <div class="skill-tags">
+            <span>Agile</span>
+            <span>Scrum</span>
+            <span>Azure DevOps</span>
+            <span>UAT Coordination</span>
+            <span>Backlog Management</span>
+          </div>
+        </div>
+
+        <div class="skill-box">
+          <h4>Automation & AI</h4>
+          <div class="skill-tags">
+            <span>Power Platform</span>
+            <span>Power BI</span>
+            <span>Power Automate</span>
+            <span>AI Workflows</span>
+            <span>Process Optimization</span>
+          </div>
+        </div>
+
+        <div class="skill-box">
+          <h4>Enterprise Systems</h4>
+          <div class="skill-tags">
+            <span>System Integration</span>
+            <span>Siebel</span>
+            <span>PBM</span>
+            <span>MDM</span>
+            <span>Workflow Applications</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section glass">
+      <div class="section-title">
+        <h3>Certifications & Learning</h3>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-card">
+          <ul>
+            <li>Microsoft Power Platform & Power Apps Training</li>
+            <li>Applied automation and workflow optimization concepts in enterprise projects</li>
+            <li>Continuous exploration of AI, Product Management, and digital transformation trends</li>
+            <li>Hands-on collaboration across enterprise application lifecycles</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      Designed as a futuristic interactive resume • Built with HTML, CSS & JavaScript
+    </div>
+  </div>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+
+    const cards = document.querySelectorAll('.timeline-card, .project-card, .skill-box, .metric');
+
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(110,231,255,0.12), rgba(255,255,255,0.04))`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.background = 'rgba(255,255,255,0.04)';
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      document.querySelector('.bg-grid').style.transform = `translateY(${scrollY * 0.08}px)`;
+    });
+  </script>
+</body>
+</html>
